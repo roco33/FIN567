@@ -23,7 +23,12 @@ for i = 1: length(fields)
     p(i) = raw(1,2);
 end
 
-sig = var * var'/200;
+lambda = 0.94;
+
+l = (1-lambda) * lambda.^(0:199);
+l = ones(78,1) * l;
+
+sig = var .*l * var'/sum(l(1,:));
 v = p * position;
 w = p' .* position / v;
 sigma2 = w' * sig * w;
