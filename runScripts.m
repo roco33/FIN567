@@ -10,7 +10,7 @@ disp(['Observation start date is ' startdate ', end date is ' enddate])
 
 positions = ones(78,1);
 disp('Hypothetical positions are ')
-disp(p')
+disp(positions')
 
 disp('Retrieving data from Yahoo! Finance...')
 c = getYahooData(tickers, startdate,enddate,'yyyymmdd');
