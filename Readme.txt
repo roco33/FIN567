@@ -1,0 +1,1 @@
+Drap all files into Matlab working directory and run runScripts.m

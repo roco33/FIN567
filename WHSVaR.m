@@ -1,6 +1,7 @@
 function VaR = WHSVaR(c, positions)
 
 %historical simulation VaR
+%use 200 observations, further work needed
 
 fields = fieldnames(c);
 

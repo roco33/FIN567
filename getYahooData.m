@@ -7,6 +7,7 @@ function stock = getYahooData(tickers, startDate, endDate, Format)
 %This function outputs a structure variable containing tables with ticker
 %name.
 %Update 1: draw dividend data from website
+%Upadte 2: urlread function is not available, change to use webread
 
 %standerdize the date inputs
 startDate = datenum(startDate, Format);

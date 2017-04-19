@@ -1,6 +1,9 @@
 function VaR = DNVaR(c,position)
 
 %deleta-normal VaR
+%use 200 observations, further update needed
+%simple estimation with weighted average used to estimate standard
+%deviation, Christoffersen Chapter 4; Person Chapter 3
 
 fields = fieldnames(c);
 var = zeros(length(fields),200);
