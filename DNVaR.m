@@ -6,7 +6,7 @@ function VaR = DNVaR(c,position)
 %deviation, Christoffersen Chapter 4; Person Chapter 3
 
 fields = fieldnames(c);
-var = zeros(length(fields),200);
+rr = zeros(length(fields),200);
 p = zeros(1,length(fields));
 %lambda missing
 
@@ -15,14 +15,14 @@ for i = 1: length(fields)
     raw = table2array(raw);
     r1 = raw(1:end-1,2); %lag price
     r2 = raw(2:end ,2);
-    r = log(r1 ./ r2);
+    r = (r1 ./ r2)-1;
     try
-        var1 = r(1:200);
+        rr1 = r(1:200);
     catch ME
-        var1 = r;
-        var1 = [var1; zeros(200-length(var1),1)];
+        rr1 = r;
+        rr1 = [rr1; zeros(200-length(rr1),1)];
     end
-    var(i,:) = var1;
+    rr(i,:) = rr1;
     p(i) = raw(1,2);
 end
 
@@ -31,7 +31,7 @@ lambda = 0.94;
 l = (1-lambda) * lambda.^(0:199);
 l = ones(78,1) * l;
 
-sig = var .*l * var'/sum(l(1,:));
+sig = rr .*l * rr'/sum(l(1,:));
 v = p * position;
 w = p' .* position / v;
 sigma2 = w' * sig * w;
